@@ -1,0 +1,25 @@
+{
+  "name": "liquid-rendering-engine",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+     "build": "tsc",
+     "watch": "tsc -w"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [],
+  "author": "LuckyX",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "liquidjs": "^10.19.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "jest": "^29.7.0",
+    "typescript": "^5.7.2"
+  }
+}
