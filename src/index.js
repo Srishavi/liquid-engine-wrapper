@@ -2,7 +2,7 @@
 
 const { Liquid } = require('liquidjs');
 const moneyFilter = require('./filters/moneyFilter');
-const uppercaseTag = require('./tags/uppercaseTag');
+const uppercaseTag = require('./tags/upperCaseTag');
 
 class RenderingEngine {
   constructor() {
