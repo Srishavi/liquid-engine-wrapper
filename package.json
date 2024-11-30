@@ -1,14 +1,14 @@
 {
   "name": "liquid-engine-wrapper",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js", 
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["liquid", "template-engine", "liquidjs", "wrapper"],
+  "author": "admin@srishavi.com",
   "license": "ISC",
-  "description": "",
+  "description": "A wrapper around LiquidJS with custom filters and tags",
   "dependencies": {
     "liquidjs": "^10.19.0"
   },
