@@ -1,16 +1,15 @@
-import { TagToken, Context, TagImplOptions } from 'liquidjs';
+import { TagToken, Context } from 'liquidjs';
 
-interface UpperCaseTag extends TagImplOptions {
-  str: string;
-}
+const upperCaseTag = {
+  str: '', 
 
-const upperCaseTag: UpperCaseTag = {
   parse(tagToken: TagToken) {
-    this.str = tagToken.args;
+    this.str = tagToken.args.trim(); 
   },
+
   async render(ctx: Context) {
-    const content = await ctx.get(this.str);
-    return String(content).toUpperCase();
+    const content = ctx.get([this.str]); 
+    return String(content || '').toUpperCase(); 
   },
 };
 
