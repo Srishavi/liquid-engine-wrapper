@@ -15,7 +15,11 @@ class RenderingEngine {
     try {
       return await this.engine.parseAndRender(template, data);
     } catch (error) {
-      throw new Error(`Template rendering error: ${(error as Error).message}`);
+      if (error instanceof Error) {
+        throw new Error(`Template rendering error: ${error.message}`);
+      } else {
+        throw new Error(`Template rendering error: ${String(error)}`);
+      }
     }
   }
 
@@ -23,7 +27,11 @@ class RenderingEngine {
     try {
       this.engine.parse(template);
     } catch (error) {
-      throw new Error(`Template parsing error: ${(error as Error).message}`);
+      if (error instanceof Error) {
+        throw new Error(`Template parsing error: ${error.message}`);
+      } else {
+        throw new Error(`Template parsing error: ${String(error)}`);
+      }
     }
   }
 }

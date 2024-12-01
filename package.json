@@ -1,5 +1,5 @@
 {
-  "name": "liquid-engine-wrapper",
+  "name": "@srishavi/liquid-engine-wrapper",
   "version": "1.0.0",
   "description": "A wrapper around LiquidJS with custom filters and tags",
   "main": "dist/index.js",
@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "prepare": "pnpm run build"
+    "prepare": "npm run build"
   },
   "keywords": [],
   "author": "",
