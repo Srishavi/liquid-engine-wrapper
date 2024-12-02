@@ -1,6 +1,7 @@
 import { Liquid } from 'liquidjs';
 import moneyFilter from './filters/moneyFilter';
 import upperCaseTag from './tags/upperCaseTag';
+import PaginateTag from './tags/paginateTag';
 
 class RenderingEngine {
   private engine: Liquid;
@@ -9,6 +10,7 @@ class RenderingEngine {
     this.engine = new Liquid();
     this.engine.registerFilter('money', moneyFilter);
     this.engine.registerTag('uppercase', upperCaseTag);
+    this.engine.registerTag('paginate', PaginateTag);
   }
 
   async render(template: string, data: object): Promise<string> {
