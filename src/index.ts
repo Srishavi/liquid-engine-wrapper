@@ -5,9 +5,16 @@ import PaginateTag from './tags/paginateTag';
 
 class RenderingEngine {
   private engine: Liquid;
+  private baseUrl: string;
 
-  constructor() {
+  constructor(baseUrl: string) {
+    if (!baseUrl) {
+      throw new Error('Base URL is required and cannot be empty');
+    }
+
+    this.baseUrl = baseUrl;
     this.engine = new Liquid();
+
     this.engine.registerFilter('money', moneyFilter);
     this.engine.registerTag('uppercase', upperCaseTag);
     this.engine.registerTag('paginate', PaginateTag);
