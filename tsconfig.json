@@ -1,12 +1,19 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "module": "CommonJS",
-    "target": "ES6",
-    "declaration": true,
+    "target": "ES2019",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "dist",
+    "rootDir": "src",
     "strict": true,
-    "esModuleInterop": true
+    "declaration": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "dist"
+  ]
 }
