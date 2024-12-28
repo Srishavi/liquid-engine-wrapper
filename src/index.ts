@@ -1,7 +1,10 @@
-import { Liquid } from 'liquidjs'
-import moneyFilter from './filters/moneyFilter.js'
-import upperCaseTag from './tags/upperCaseTag.js'
-import PaginateTag from './tags/paginateTag.js'
+import { Liquid } from "liquidjs"
+import moneyFilter from "./filters/moneyFilter.js"
+import upperCaseTag from "./tags/upperCaseTag.js"
+import paginateTag from "./tags/paginateTag.js"
+import styleBlock from "./tags/styleBlock.js"
+import sectionsTag from "./tags/sectionsTag.js"
+import renderTag from "./tags/renderTag.js"
 
 class RenderingEngine {
   private engine: Liquid
@@ -9,35 +12,35 @@ class RenderingEngine {
 
   constructor(baseUrl: string) {
     if (!baseUrl) {
-      throw new Error('Base URL is required and cannot be empty')
+      throw new Error("Base URL is required")
     }
     this.baseUrl = baseUrl
     this.engine = new Liquid()
-    this.engine.registerFilter('money', moneyFilter)
-    this.engine.registerTag('uppercase', upperCaseTag)
-    this.engine.registerTag('paginate', PaginateTag)
+    this.engine.registerFilter("money", moneyFilter)
+    this.engine.registerTag("uppercase", upperCaseTag)
+    this.engine.registerTag("paginate", paginateTag)
+    this.engine.registerTag("style", styleBlock)
+    this.engine.registerTag("sections", sectionsTag)
+    this.engine.registerTag("render", renderTag)
   }
 
-  async render(template: string, data: object): Promise<string> {
-    try {
-      return await this.engine.parseAndRender(template, data)
-    } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(`Template rendering error: ${error.message}`)
-      }
-      throw new Error(`Template rendering error: ${String(error)}`)
-    }
+  async render(template: string, data: Record<string, any> = {}): Promise<string> {
+    return this.engine.parseAndRender(template, {
+      ...data,
+      __baseUrl__: this.baseUrl,
+      __engine__: this,
+      __fetch__: async (url: string) => {
+        const resp = await fetch(url)
+        if (!resp.ok) {
+          throw new Error(`Failed to fetch ${url}. Status: ${resp.status}`)
+        }
+        return resp.text()
+      },
+    })
   }
 
   parse(template: string): void {
-    try {
-      this.engine.parse(template)
-    } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(`Template parsing error: ${error.message}`)
-      }
-      throw new Error(`Template parsing error: ${String(error)}`)
-    }
+    this.engine.parse(template)
   }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "@srishavi/liquid-engine-wrapper",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "A wrapper around LiquidJS with custom filters and tags",
   "type": "module",
   "main": "dist/index.js",
