@@ -39,7 +39,7 @@ const sectionsTag: SectionsTag = {
         const subSection = groupConfig.sections[sectionId]
         if (!subSection?.type) continue
 
-        const subUrl = `${baseUrl}/sections/${subSection.type}.liquid`
+        const subUrl = `${baseUrl}/sections/${subSection.type}`
         const subStr = await fetchFn(subUrl)
         if (!subStr || !subStr.trim()) continue
 
