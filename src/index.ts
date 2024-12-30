@@ -1,8 +1,11 @@
 import { Liquid } from "liquidjs"
 import moneyFilter from "./filters/moneyFilter.js"
+import { assetUrlFilter } from "./filters/assetUrlFilter.js"
+import { stylesheetTagFilter } from "./filters/stylesheetTagFilter.js"
 import upperCaseTag from "./tags/upperCaseTag.js"
 import paginateTag from "./tags/paginateTag.js"
 import styleBlock from "./tags/styleBlock.js"
+import sectionTag from "./tags/sectionTag.js"
 import sectionsTag from "./tags/sectionsTag.js"
 import renderTag from "./tags/renderTag.js"
 
@@ -17,9 +20,12 @@ class RenderingEngine {
     this.baseUrl = baseUrl
     this.engine = new Liquid()
     this.engine.registerFilter("money", moneyFilter)
+    this.engine.registerFilter("asset_url", assetUrlFilter)
+    this.engine.registerFilter("stylesheet_tag", stylesheetTagFilter)
     this.engine.registerTag("uppercase", upperCaseTag)
     this.engine.registerTag("paginate", paginateTag)
     this.engine.registerTag("style", styleBlock)
+    this.engine.registerTag("section", sectionTag)
     this.engine.registerTag("sections", sectionsTag)
     this.engine.registerTag("render", renderTag)
   }
